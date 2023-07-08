@@ -20,7 +20,6 @@ const LoginView = () => {
 
   return (
     <div>
-      <div>Hola</div>
       <div>
         {showForm === FORMS.SIGN_IN ? < SignUpForm /> : < SignInForm /> }          
       </div>
