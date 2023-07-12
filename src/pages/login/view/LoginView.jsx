@@ -15,7 +15,7 @@ const LoginView = () => {
     
   const handleShowForm = () => {
     setShowForm((prevState)=> 
-    prevState=== FORMS.SIGN_IN? FORMS.SIGN_UP : FORMS.SIGN_IN)
+    prevState=== FORMS.SIGN_IN? FORMS.SIGN_UP : FORMS.SIGN_UP)
   };
 
   return (
