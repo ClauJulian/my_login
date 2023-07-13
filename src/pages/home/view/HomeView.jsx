@@ -10,7 +10,7 @@ export const HomeView = () => {
   
   const { state, dispatch } = useAuth();
   
-  console.log(state);
+  // console.log(state);
   const navigate  = useNavigate(); 
 
   const handleSignOut =  async() => { 
