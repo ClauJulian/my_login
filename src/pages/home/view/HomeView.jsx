@@ -1,17 +1,28 @@
 import React from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { signOut } from "firebase/auth";
-import { auth } from '../../../config/firebase.config';
+
+import { signOut } from '../../login/services/signOut.services';
+import { AUTH_LOGOUT } from '../../../auth/reducer/AuthReducer';
+
 
 export const HomeView = () => {
-  const { logout, user } = useAuth();
   
+  const { state, dispatch } = useAuth();
+  
+  console.log(state);
   const navigate  = useNavigate(); 
 
-  const handleSignOut = async () => {   
+  const handleSignOut =  async() => { 
+    
+      await signOut();
       
-      await signOut(auth);
+      localStorage.clear();
+      
+      dispatch({
+        type: AUTH_LOGOUT,
+      });
+    
       navigate("/login");
     }
 
@@ -19,7 +30,7 @@ export const HomeView = () => {
   return (
     <div>
         <h1>HOME</h1>
-        <h1>Bienvenido {user?.email}</h1>
+        <h1>Bienvenido {state.user.email}</h1>
         <button
         onClick={handleSignOut}
         >Cerrar Sesión</button>

@@ -4,12 +4,13 @@ import { useAuth } from '../hooks/useAuth'
 
 export const ProtectedRoutes = ({children}) => {
 
-  // const { isLoggedIn } = useAuth();
+  const { state } = useAuth();
 
-  const isLoggedIn = true;
-  if (isLoggedIn) return children;
- 
-  return <Navigate to="/login" />
+  if (!state.isAuth) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
 }
 
 export default ProtectedRoutes

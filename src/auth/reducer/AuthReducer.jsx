@@ -1,40 +1,36 @@
 
 export const authInitialState ={
     user:null,
-    isLoggedIn:false,
+    isAuth:false,
 };
 
-export const AUTH_TYPES ={
-    LOGIN:"LOGIN",
-    LOGOUT:"LOGOUT"
-};
+export const authKey = "auth";
 
-export const AUTH_KEY_LOCAL_STORAGE = "auth";
-
-export const authInitializer = (initialValue=authInitialState) => JSON.parse(localStorage.getItem(AUTH_KEY_LOCAL_STORAGE)) || initialValue;
+export const AUTH_LOGIN = "AUTH_LOGIN";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 
-export const authReducer = (state = authInitialState, { type:authType, payload }) =>{
-    
-        switch(authType){
-            case AUTH_TYPES.LOGIN: 
-                return {
-                    ...state,
-                    user:payload,
-                    isLoggedIn:true,
-                }
-
-            case AUTH_TYPES.LOGOUT:
-                return {
-                    ...state,
-                    user:null,
-                    isLoggedIn:false,
-                }
-
-            default:
-                return state
+export const authInit = (initialState = authInitialState) => {
+    return JSON.parse(localStorage.getItem(authKey)) || initialState;
+  };
 
 
-        }
-    
+  export const authReducer = (state = authInitialState, action) => {
+    switch (action.type) {
+      case AUTH_LOGIN:
+        return {
+          ...state,
+          user: action.payload,
+          isAuth: true,
+        };
+      case AUTH_LOGOUT:
+        return {
+          ...state,
+          user: null,
+          isAuth: false,
+        };
+  
+      default:
+        return state;
+    };   
 }

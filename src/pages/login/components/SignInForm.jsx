@@ -1,40 +1,56 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
-import { signIn } from '../services/signIn.services';
+import React from 'react';
+import { Button,  Spacer, Text } from "@nextui-org/react";
+import useLogin from '../hooks/useLogin';
+import CustomInput from '../../../components/CustomInput/CustomInput';
 
 export const SignInForm = () => {
 
-    const navigate  = useNavigate();
-    const { login, isLoggedIn } = useAuth();
-    
-    const handleSubmit= async (event)=>{
-        event.preventDefault();
-       
-        const form = new FormData(event.target);
-        const data = Object.fromEntries(form.entries());
+    const { form, signInEmail, setForm } = useLogin();
 
-        signIn(data.email.toString(),data.password.toString());  
-
-        navigate("/", {replace:true});
-
-    };
 
   return (
-    <div>
-        <h1>LOGIN</h1>
-        <form onSubmit={handleSubmit}>            
-            <div>
-                <input type="email" name="email" placeholder="mail" />
-            </div>
-            <div>
-                <input type="password" name="password" placeholder="password" />
-            </div>
-            <div>
-                <button type="submit">Iniciar Sesion</button>
-            </div>    
+    <>
+        <Text h2>LOGIN</Text>
+        <form 
+            style={{
+            display: "flex",
+            flexDirection: "column",
+            width:"30vw",
+            minWidth: "300px",
+            }}
+            onSubmit={signInEmail}>           
+
+
+            <CustomInput
+            label={"Correo electrónico"}
+            type={"email"}
+            name={"email"}
+            placeholder={"E M A I L @ L O G I N . C O M"}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+
+            <Spacer y={0.5}/>    
+
+            <CustomInput
+            label={"Password"}
+            type={"password"}
+            name={"password"}
+            placeholder={"* * * * * * * *"}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+             />
+
+            <Spacer y={0.5}/>    
+           
+            <Button
+                type="submit" 
+                color={"secondary"}
+                auto
+            >
+            Iniciar Sesion
+            </Button>
+            <Spacer y={2}/>    
         </form>
-    </div>
+    </>
   )
   }
 

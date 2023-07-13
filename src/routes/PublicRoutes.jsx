@@ -4,10 +4,12 @@ import { useAuth } from '../hooks/useAuth'
 
 export const PublicRoutes = ({children}) => {
 
-  const { isLoggedIn } = useAuth();
+  const { state } = useAuth();
 
-  if (isLoggedIn) return <Navigate to="/" />;
-  
+  if (state.isAuth) {
+    return <Navigate to="/" />;
+  }
+
   return children;
 }
 

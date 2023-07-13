@@ -3,6 +3,10 @@ import { AuthContext } from '../../../auth/context/AuthContext'
 import SignInForm from '../components/SignInForm';
 import SignUpForm from '../components/SignUpForm';
 
+import {  
+  Card,
+} from "@nextui-org/react";
+
 const LoginView = () => {
 
   const FORMS = {
@@ -15,21 +19,27 @@ const LoginView = () => {
     
   const handleShowForm = () => {
     setShowForm((prevState)=> 
-    prevState=== FORMS.SIGN_IN? FORMS.SIGN_UP : FORMS.SIGN_UP)
+    prevState=== FORMS.SIGN_IN? FORMS.SIGN_UP : FORMS.SIGN_IN)
   };
 
   return (
-    <div>
-      <div>
+    <Card
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      }}
+    >
+      <Card.Body>
         {showForm === FORMS.SIGN_IN ? < SignUpForm /> : < SignInForm /> }          
-      </div>
+      </Card.Body>
 
-      <div>
+      <Card.Body>
         <button onClick = {handleShowForm}>
         { showForm === FORMS.SIGN_IN? "Iniciar Sesion" : "Registrate" }
         </button>
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   )
 }
 
