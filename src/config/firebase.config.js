@@ -4,13 +4,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDIkhjrqPh3TrulXnFD81tjRE2-T1eKE0E",
-  authDomain: "prueba-feltre.firebaseapp.com",
-  projectId: "prueba-feltre",
-  storageBucket: "prueba-feltre.appspot.com",
-  messagingSenderId: "431889098362",
-  appId: "1:431889098362:web:b935cffc2d8d7317ae7dc3",
-  measurementId: "G-Q8661827JX"
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 
